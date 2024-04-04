@@ -1,19 +1,14 @@
-function indicesDosMaiores(array) {
-    const indices = [];
-    for (let i = 0; i < array.length; i++) {
-        let maior = true;
-        for (let j = 0; j < array.length; j++) {
-            if (array[j] > array[i]) {
-                maior = false;
-                break;
+function getPositions(arr) {
+    let positions = new Array(arr.length).fill(1);
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = 0; j < arr.length; j++) {
+            if (arr[i] > arr[j]) {
+                positions[i]++;
             }
-            console.log(array[i])
         }
-        if (maior) indices.push(i + 1);
     }
-    return indices;
+    return positions;
 }
 
-const vetor = [40, 10, 30, 20];
-const resultado = indicesDosMaiores(vetor);
-console.log(resultado); // Saída: [4, 1, 3, 2]
+console.log(getPositions([5, 4, 2, 3]));  // Output: [4, 3, 1, 2]
+console.log(getPositions([10, 10, 10]));  // Output: [1, 1, 1]
