@@ -36,8 +36,14 @@ function timeConversion(s) {
     if (s.length > 2){
         const lastChars = s.slice(-2);
         if (lastChars == "PM"){
-            hour = parseInt(hour)
-            hour = hour + 12
+            if (hour == "12"){
+                hour = "12";
+            }else{
+                hour = parseInt(hour)
+                hour = hour + 12
+            }
+        }if (hour == "12" && lastChars == "AM"){
+            hour = "00";
         }
     }
     return hour.toString() + ":" + min + ":" + sec
