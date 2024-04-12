@@ -14,9 +14,11 @@ function processData(input) {
                         result += words[i];
                     }
                 }
+                result.replace("()","")
                 console.log(result);
             } else {
-                console.log(words.replace(/([a-z])([A-Z])/g, '$1 $2').toLowerCase());
+                words = words.replace(/([a-z])([A-Z])/g, '$1 $2').toLowerCase()
+                console.log(words.replace(/[()]/g, ''))
             }
         } else if (operation === "C") {
             let parts = words.split(" ");
@@ -42,7 +44,7 @@ function isUpperCase(character) {
 
 process.stdin.resume();
 process.stdin.setEncoding("ascii");
-_input = "C;V;can of coke";
+_input = "";
 process.stdin.on("data", function (input) {
     _input += input;
 });
