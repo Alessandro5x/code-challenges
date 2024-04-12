@@ -22,7 +22,7 @@ function processData(input) {
             let parts = words.split(" ");
             let result = "";
             parts.forEach((part, index) => {
-                if (index === 0) {
+                if (index === 0 && type !== "C") {
                     result += part.toLowerCase();
                 } else {
                     result += part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
@@ -42,7 +42,7 @@ function isUpperCase(character) {
 
 process.stdin.resume();
 process.stdin.setEncoding("ascii");
-_input = "";
+_input = "C;V;can of coke";
 process.stdin.on("data", function (input) {
     _input += input;
 });
