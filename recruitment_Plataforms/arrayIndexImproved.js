@@ -1,5 +1,5 @@
 function getPositions(arr) {
-    let sortedArr = [...arr].sort((a, b) => b - a);
+    let sortedArr = [...arr].sort((a, b) => a - b);
     return arr.map(num => sortedArr.indexOf(num) + 1);
 }
 
