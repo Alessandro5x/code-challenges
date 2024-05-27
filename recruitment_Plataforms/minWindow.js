@@ -7,47 +7,36 @@ function minWindow(s, t) {
         dictT[char] = (dictT[char] || 0) + 1;
     }
 
-    // Número total de caracteres únicos em t que precisam estar na janela
     let required = Object.keys(dictT).length;
 
-    // Variáveis para nossa janela deslizante
-    let l = 0, r = 0;
-    let formed = 0;
+    let left = 0, right = 0, formed = 0;
     let windowCounts = {};
 
-    // Resultados (comprimento da janela, índice da esquerda, índice da direita)
+    // Resultado final (comprimento da janela, índice da esquerda, índice da direita)
     let ans = [-1, 0, 0];
 
-    while (r < s.length) {
-        // Adiciona um caractere da string à janela
-        let char = s[r];
+    for (right = 0; right < s.length; right++) {
+        let char = s[right];
         windowCounts[char] = (windowCounts[char] || 0) + 1;
 
-        // Se a contagem do caractere atual na janela é a mesma que na string t, incrementa `formed`
         if (dictT[char] && windowCounts[char] === dictT[char]) {
             formed++;
         }
 
-        // Tente e contraia a janela até o ponto em que ela não seja mais 'válida'
-        while (l <= r && formed === required) {
-            char = s[l];
+        while (left <= right && formed === required) {
+            char = s[left];
 
-            // Salva a menor janela encontrada até agora
-            if (ans[0] === -1 || r - l + 1 < ans[0]) {
-                ans = [r - l + 1, l, r];
+            if (ans[0] === -1 || right - left + 1 < ans[0]) {
+                ans = [right - left + 1, left, right];
             }
 
-            // Remove caracteres da janela à esquerda
             windowCounts[char]--;
             if (dictT[char] && windowCounts[char] < dictT[char]) {
                 formed--;
             }
 
-            l++;
+            left++;
         }
-
-        // Expande a janela pela direita
-        r++;
     }
 
     return ans[0] === -1 ? "" : s.slice(ans[1], ans[2] + 1);
