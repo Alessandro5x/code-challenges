@@ -10,4 +10,8 @@ function reverse(string){
     return aux
 }
 
+function reverse2(str){
+    return str.split('').reverse().join('')
+}
+
 reverse("horas")
